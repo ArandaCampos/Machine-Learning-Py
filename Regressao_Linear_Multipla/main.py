@@ -3,13 +3,13 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 
 # Carregamento de dados
-dataset = pd.read_csv("investimento_lucro.csv")
+dataset = pd.read_csv("aptos.csv")
 
 # Separação das variáveis independentes (X) e dependentes (y)
 X, y = dataset.iloc[:,:-1].values, dataset.iloc[:,-1].values
 
 # Separação CRUZADA das variáveis de treinamento e teste
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
 
 # Treinamento do model
 model = LinearRegression()
@@ -20,5 +20,5 @@ y_predict = model.predict(X_test)
 
 # Relatório
 for i in range(len(y_predict)):
-    erro = (y_predict[i] - y_test[i]) / y_test[i]
-    print("Predição: " + str(y_predict[i]) + "\tReal: "+ str(y_test[i]) + "\tErro: " + str(erro))
+    erro = (y_predict[i] - y_test[i]) / y_test[i] * 100
+    print(f'Predição: {y_predict[i]}\tReal: {y_test[i]}\tErro: {erro}%')
