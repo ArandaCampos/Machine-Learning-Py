@@ -19,7 +19,6 @@ model.fit(X_train, y_train)
 y_predict = model.predict(X_test)
 
 # Relatório
-erro_max = erro_min = -1
 for i in range(len(y_predict)):
     erro = (y_predict[i] - y_test[i]) / y_test[i] * 100
     if erro < 0: erro *= -1
